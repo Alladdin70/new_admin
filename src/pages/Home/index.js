@@ -18,6 +18,8 @@ const useStyle = makeStyles((theme)=>({
         
     }
 }));
+const editHandler = ()=> {window.location.href='/editor';}
+const tickerHandler = ()=> {window.location.href='/ticker';}
 
 
 function Home(){
@@ -27,8 +29,8 @@ function Home(){
         <Container className={classes.canvas} disableGutters={true}>
             <Header/>
             <Title/>
-            <MenuButton/>
-            <MenuButton/>
+            <MenuButton click={editHandler} text='Стартовые таблицы'/>
+            <MenuButton click={tickerHandler} text='Бегущая строка'/>
             <MenuButton/>
             <MenuButton/>
             <Footer/>
