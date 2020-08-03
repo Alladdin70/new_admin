@@ -1,11 +1,13 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
-import MenuButton from '../../components/MenuButton';
+
+
 
 
 const useStyle = makeStyles((theme)=>({
@@ -18,25 +20,20 @@ const useStyle = makeStyles((theme)=>({
         
     }
 }));
-const editHandler = ()=> {window.location.href='/editor';}
-const tickerHandler = ()=> {window.location.href='/ticker';}
-const correctionHandler = ()=> {window.location.href='/correction';}
-const reportsHandler = ()=> {window.location.href='/reports';}
 
 
-function Home(){
+
+function Editor(props){
     const classes = useStyle();
+    console.log(props);
     return(
             
         <Container className={classes.canvas} disableGutters={true}>
             <Header/>
             <Title/>
-            <MenuButton click={editHandler} text='Стартовые таблицы'/>
-            <MenuButton click={tickerHandler} text='Бегущая строка'/>
-            <MenuButton click={correctionHandler} text='Коррекция результатов'/>
-            <MenuButton click={reportsHandler} text='Отчеты'/>
+            <Paper>{props.match.params.tablename}</Paper>
             <Footer/>
         </Container>
             );
 }
-export default Home;
+export default Editor;

@@ -18,25 +18,26 @@ const useStyle = makeStyles((theme)=>({
         
     }
 }));
-const editHandler = ()=> {window.location.href='/editor';}
-const tickerHandler = ()=> {window.location.href='/ticker';}
-const correctionHandler = ()=> {window.location.href='/correction';}
-const reportsHandler = ()=> {window.location.href='/reports';}
+
+const newHandler = ()=> {window.location.href='/new';}
+const listHandler = ()=> {window.location.href='/open';}
+const protocolHandler = ()=> {window.location.href='/protomaker';}
+const startHandler = ()=> {window.location.href='/start';}
 
 
-function Home(){
+function EditorMenu(){
     const classes = useStyle();
     return(
             
         <Container className={classes.canvas} disableGutters={true}>
             <Header/>
             <Title/>
-            <MenuButton click={editHandler} text='Стартовые таблицы'/>
-            <MenuButton click={tickerHandler} text='Бегущая строка'/>
-            <MenuButton click={correctionHandler} text='Коррекция результатов'/>
-            <MenuButton click={reportsHandler} text='Отчеты'/>
+            <MenuButton click={newHandler} text='Новая таблица'/>
+            <MenuButton click={listHandler} text='Открыть текущую таблицу'/>
+            <MenuButton click={protocolHandler} text='Стартовый протокол'/>
+            <MenuButton click={startHandler} text='Старт соревнования'/>
             <Footer/>
         </Container>
             );
 }
-export default Home;
+export default EditorMenu;
