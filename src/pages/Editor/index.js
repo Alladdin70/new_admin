@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
@@ -6,7 +7,6 @@ import Paper from '@material-ui/core/Paper';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
-
 
 
 
@@ -25,7 +25,6 @@ const useStyle = makeStyles((theme)=>({
 
 function Editor(props){
     const classes = useStyle();
-    console.log(props);
     return(
             
         <Container className={classes.canvas} disableGutters={true}>
@@ -36,4 +35,9 @@ function Editor(props){
         </Container>
             );
 }
-export default Editor;
+export default connect(
+    state =>({
+        myStore:state
+    }),
+    dispatch =>({})
+)(Editor);

@@ -12,6 +12,8 @@ import DoneIcon from '@material-ui/icons/Done';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
+import {connect} from "react-redux";
+import {ADD_NEW_TABLE} from "../EditorMenu";
 
 
 const useStyle = makeStyles((theme)=>({
@@ -45,14 +47,15 @@ const useStyle = makeStyles((theme)=>({
 const backHandler = () => {window.location.href = '/editor';}
 
 
-function SelectName(){
+function SelectName(props){
     const [text,setText] = useState('');
     const textHandler = (event) => {
         setText(event.target.value);
-        console.log(text);
     };
     const classes=useStyle();
-    const doneHandler = () => {window.location.href = '/edit/'+ text;};
+    const doneHandler = () => {
+        window.location.href = '/edit/'+ text;
+    };
     return(
         <Container className={classes.canvas} disableGutters={true}>
             <Header/>
@@ -62,9 +65,10 @@ function SelectName(){
                 <Grid item xs={4}/>
                 <Grid item xs={4}>
                     <Paper className={classes.form} variant="outlined">
+
                     <TextField 
                         id="outlined-basic" 
-                        label="Название таблицы" 
+                        label="Название таблицы"
                         variant="outlined" 
                         className={classes.text} 
                         onChange={textHandler}
@@ -99,4 +103,9 @@ function SelectName(){
 
 }
 
-export default SelectName;
+export default connect(
+    state =>({
+        myStore:state
+    }),
+    dispatch =>({})
+)(SelectName);

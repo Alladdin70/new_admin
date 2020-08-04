@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import {createStore} from "redux";
 
-import App from './App';
 import './index.css';
+import Root from "./pages/Root";
+
+const initialState = [];
+
+const myReducer = (state=initialState,action) => {
+    return [...state,action.payload];
+};
+
+const store = createStore(myReducer);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>,
-  document.getElementById('root')
+    <Root store={store}/>, document.getElementById('root')
 );
