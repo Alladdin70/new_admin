@@ -9,7 +9,8 @@ import Root from "./pages/Root";
 const initialState = ['reducer_element'];
 
 const myReducer = (state=initialState,action) => {
-    if(action.type === 'ADD_NEW_TABLE'){return [...state,action.payload];}
+    if(action.type === 'ADD_NEW_TABLE'){return action.payload;}
+    if(action.type === 'ADD_NEW_TABLENAME'){return action.payload;}
     else{return state;}
 
 };

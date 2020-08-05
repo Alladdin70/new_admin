@@ -14,7 +14,7 @@ import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import {connect} from "react-redux";
 
-
+const ADD_NEW_TABLENAME = 'ADD_NEW_TABLENAME';
 const useStyle = makeStyles((theme)=>({
     canvas:{
         backgroundColor: '#FFCC66',
@@ -43,17 +43,22 @@ const useStyle = makeStyles((theme)=>({
       }
 }));
 
-const backHandler = () => {window.location.href = '/editor';}
-
 
 function SelectName(props){
+    const backHandler = () => {props.history.push('/editor');}
     const [text,setText] = useState('');
     const textHandler = (event) => {
         setText(event.target.value);
     };
     const classes=useStyle();
     const doneHandler = () => {
-        window.location.href = '/edit/'+ text;
+        if(/^[a-zA-Z0-9_]+$/.test(text)){ //Проверка символов в названии таблицы
+            props.onAddNewTablename(text);
+            props.history.push('/edit/'+ text);
+        }
+        else{
+            alert('Ошибка! Название может содержать только латинские буквы, цифры и знак подчеркивания');
+        }    
     };
     return(
         <Container className={classes.canvas} disableGutters={true}>
@@ -106,5 +111,12 @@ export default connect(
     state =>({
         myStore:state
     }),
-    dispatch =>({})
+    dispatch =>({
+        onAddNewTablename: (text)=>{
+            dispatch({
+                type: ADD_NEW_TABLENAME,
+                payload: {rows:[],tablename:text}
+            })
+        }
+    })
 )(SelectName);

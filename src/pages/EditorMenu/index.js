@@ -32,7 +32,7 @@ function EditorMenu(props){
     const classes = useStyle();
     const newHandler = ()=> {
         props.onAddNew();
-        props.history.push('/new');
+        props.history.push('/new');  
     };
     console.log(props.myStore);
     return(
@@ -56,7 +56,7 @@ export default connect(
         onAddNew: ()=>{
             dispatch({
                 type: ADD_NEW_TABLE,
-                payload: 'qwerty'
+                payload: {rows:[],tablename:''}
             })
         }
     })
