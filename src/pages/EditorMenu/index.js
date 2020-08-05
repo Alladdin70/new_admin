@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
@@ -8,8 +9,7 @@ import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import MenuButton from '../../components/MenuButton';
 
-export const ADD_NEW_TABLE = 'ADD_NEW_TABLE';
-
+const ADD_NEW_TABLE = 'ADD_NEW_TABLE';
 const useStyle = makeStyles((theme)=>({
     canvas:{
         backgroundColor: '#FFCC66',
@@ -22,7 +22,8 @@ const useStyle = makeStyles((theme)=>({
 }));
 
 
-const listHandler = ()=> {window.location.href='/open';};
+const listHandler = ()=> {
+    window.location.href='/open';};
 const protocolHandler = ()=> {window.location.href='/protomaker';};
 const startHandler = ()=> {window.location.href='/start';};
 
@@ -31,7 +32,7 @@ function EditorMenu(props){
     const classes = useStyle();
     const newHandler = ()=> {
         props.onAddNew();
-        window.location.href='/new';
+        props.history.push('/new');
     };
     console.log(props.myStore);
     return(
@@ -52,6 +53,11 @@ export default connect(
         myStore:state
     }),
     dispatch =>({
-        onAddNew: ()=>{dispatch({type: ADD_NEW_TABLE, payload: 'qwerty'})}
+        onAddNew: ()=>{
+            dispatch({
+                type: ADD_NEW_TABLE,
+                payload: 'qwerty'
+            })
+        }
     })
 )(EditorMenu);

@@ -13,7 +13,6 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import {connect} from "react-redux";
-import {ADD_NEW_TABLE} from "../EditorMenu";
 
 
 const useStyle = makeStyles((theme)=>({

@@ -25,6 +25,7 @@ const useStyle = makeStyles((theme)=>({
 
 function Editor(props){
     const classes = useStyle();
+    console.log(props.myStore);
     return(
             
         <Container className={classes.canvas} disableGutters={true}>

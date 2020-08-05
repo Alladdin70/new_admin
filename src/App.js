@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import EditorMenu from "./pages/EditorMenu";
 import SelectName from "./pages/SelectName";
 import Editor from "./pages/Editor";
+import {connect} from "react-redux";
 
 function App() {
     return (
@@ -20,4 +21,9 @@ function App() {
     );
   }
 
-export default App;
+export default connect(
+    state =>({
+        myStore:state
+    }),
+    dispatch =>({})
+)(App);
