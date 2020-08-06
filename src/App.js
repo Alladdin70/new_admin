@@ -7,6 +7,7 @@ import EditorMenu from "./pages/EditorMenu";
 import SelectName from "./pages/SelectName";
 import Editor from "./pages/Editor";
 import {connect} from "react-redux";
+import MyTable from  './pages/MyTable';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/editor' component={EditorMenu}/>
           <Route path='/new' component={SelectName}/>
           <Route path='/edit/:tablename' component={Editor}/>
+          <Route path='/mytable' component={MyTable}/>
         </Switch>
       </div>
     );

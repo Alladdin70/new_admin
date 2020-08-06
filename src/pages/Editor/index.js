@@ -98,6 +98,10 @@ function Editor(props){
         setInputValue(blank);
     };
 
+    const handleTestClick = () => {
+        props.history.push('/mytable')
+    }
+
     const handleBackClick = () => {
         props.onClear();
         props.history.push('/editor');
@@ -157,7 +161,7 @@ function Editor(props){
                     <Button
                         variant="outlined"
                         style={{minWidth:field1()}}
-                        //onClick={nandleBackClick}
+                        onClick={handleTestClick}
                     >Записать</Button>
                     <Button
                         variant="outlined"
