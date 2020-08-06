@@ -11,6 +11,11 @@ const initialState = ['reducer_element'];
 const myReducer = (state=initialState,action) => {
     if(action.type === 'ADD_NEW_TABLE'){return action.payload;}
     if(action.type === 'ADD_NEW_TABLENAME'){return action.payload;}
+    if(action.type === 'CLEAR_DATA'){return action.payload;}
+    if(action.type === 'ADD_ROW'){return {
+        rows: [...state.rows, action.payload],
+        tablename: state.tablename
+    };}
     else{return state;}
 
 };
