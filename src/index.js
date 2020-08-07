@@ -16,6 +16,10 @@ const myReducer = (state=initialState,action) => {
         rows: [...state.rows, action.payload],
         tablename: state.tablename
     };}
+    if(action.type === 'SAVE_CHANGES'){return {
+        rows: action.payload.rows,
+        tablename: state.tablename
+    };}
     else{return state;}
 
 };
