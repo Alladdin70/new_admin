@@ -56,7 +56,7 @@ const useStyle = makeStyles((theme)=>({
     },
     canvas:{
         backgroundColor: '#FFCC66',
-        height: '100vh',
+        minHeight: '100vh',
         maxWidth: 'sm',
         opacity: '95%',
         position: 'relative'
@@ -74,10 +74,15 @@ function MyTable(props){
     const [data,setData] = useState(props.myStore.rows);
     const saveChanges = () => {
         const exportdata =[];
-        data.map((item)=>{
-            exportdata.push({name: item.name, title: item.title, reg:item.reg});
+        data.map((item) => {
+            let myName = item.name;
+            let title = item.title;
+            let reg = item.reg;
+            if(item.name === undefined) { myName = ''}
+            if(item.title === undefined) {title = ''}
+            if(item.reg === undefined) {reg = ''}
+            exportdata.push({name: myName, title: title, reg: reg});
         });
-        console.log(exportdata);
         props.onSaveChanges(exportdata);
     };
     const discardChanges = () => {
