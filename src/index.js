@@ -6,7 +6,7 @@ import './index.css';
 import Root from "./pages/Root";
 
 
-const initialState = ['reducer_element'];
+const initialState = {rows:[], tables:[], tablename:''};
 
 const myReducer = (state=initialState,action) => {
     if(action.type === 'ADD_NEW_TABLE'){return action.payload;}
@@ -14,11 +14,28 @@ const myReducer = (state=initialState,action) => {
     if(action.type === 'CLEAR_DATA'){return action.payload;}
     if(action.type === 'ADD_ROW'){return {
         rows: [...state.rows, action.payload],
-        tablename: state.tablename
+        tablename: state.tablename,
+        tables: state.tables
     };}
     if(action.type === 'SAVE_CHANGES'){return {
         rows: action.payload.rows,
-        tablename: state.tablename
+        tablename: state.tablename,
+        tables: state.tables
+    };}
+    if(action.type === 'GET_TABLES'){return{
+        rows: state.rows,
+        tablename: state.tablename,
+        tables: action.payload.tables
+    };}
+    if(action.type === 'CHANGE_RADIO'){return{
+        rows: state.rows,
+        tablename: action.payload.tablename,
+        tables: state.tables
+    };}
+    if(action.type === 'SELECT_TABLE'){return{
+        rows: action.payload.rows,
+        tablename: state.tablename,
+        tables: state.tables
     };}
     else{return state;}
 

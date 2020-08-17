@@ -10,6 +10,7 @@ import Title from '../../components/Title';
 import MenuButton from '../../components/MenuButton';
 
 const ADD_NEW_TABLE = 'ADD_NEW_TABLE';
+const GET_TABLES = 'GET_TABLES';
 const useStyle = makeStyles((theme)=>({
     canvas:{
         backgroundColor: '#FFCC66',
@@ -22,8 +23,9 @@ const useStyle = makeStyles((theme)=>({
 }));
 
 
-const listHandler = ()=> {
-    window.location.href='/open';};
+
+
+
 const protocolHandler = ()=> {window.location.href='/protomaker';};
 const startHandler = ()=> {window.location.href='/start';};
 
@@ -34,6 +36,14 @@ function EditorMenu(props){
         props.onAddNew();
         props.history.push('/new');  
     };
+    const listHandler = ()=> {
+        fetch('/tables').then(res=>res.json()).then((res)=>{
+            console.log(res);
+            props.onGetTables(res);
+        });
+        props.history.push('/open');
+    };
+
     console.log(props.myStore);
     return(
             
@@ -56,7 +66,13 @@ export default connect(
         onAddNew: ()=>{
             dispatch({
                 type: ADD_NEW_TABLE,
-                payload: {rows:[],tablename:''}
+                payload: {rows:[], tablename:''}
+            })
+        },
+        onGetTables: (tables)=>{
+            dispatch({
+                type: GET_TABLES,
+                payload: {tables: tables}
             })
         }
     })

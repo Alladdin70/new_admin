@@ -70,6 +70,7 @@ function MyTable(props){
         {title: 'Спортивное звание',field: 'title'},
         {title: 'Регион',field: 'reg'}
     ];
+    const tname = props.myStore.tablename;
     const classes = useStyle();
     const [data,setData] = useState(props.myStore.rows);
     const saveChanges = () => {
@@ -84,6 +85,20 @@ function MyTable(props){
             exportdata.push({name: myName, title: title, reg: reg});
         });
         props.onSaveChanges(exportdata);
+        fetch('/savetable?name='+tname, {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(exportdata)
+        }).then((response) => response.text())
+            .then((response)=>{
+                console.log(response);
+            }).catch(e=>console.log(e));
     };
     const discardChanges = () => {
         props.history.push('/editor');

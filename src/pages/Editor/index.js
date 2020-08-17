@@ -202,7 +202,7 @@ export default connect(
         onClear: () => {
             dispatch({
                 type: CLEAR_DATA,
-                payload: {rows:[],tablename:''}
+                payload: {rows:[],tablename:'',tables:[]}
             })
         }
     })

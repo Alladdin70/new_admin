@@ -53,8 +53,17 @@ function SelectName(props){
     const classes=useStyle();
     const doneHandler = () => {
         if(/^[a-zA-Z0-9_]+$/.test(text)){ //Проверка символов в названии таблицы
-            props.onAddNewTablename(text);
-            props.history.push('/edit/'+ text);
+            fetch("/newtable?name=" + text).then(response=>response.text()).then((response) => {
+                if(response.slice(0,5) === "Error"){
+                    alert(response);
+                }
+                else{
+                    props.onAddNewTablename(text);
+                    props.history.push('/edit/'+ text);
+                }
+            }).catch((error)=>{
+                console.log(error);
+            });
         }
         else{
             alert('Ошибка! Название может содержать только латинские буквы, цифры и знак подчеркивания');
@@ -115,7 +124,7 @@ export default connect(
         onAddNewTablename: (text)=>{
             dispatch({
                 type: ADD_NEW_TABLENAME,
-                payload: {rows:[],tablename:text}
+                payload: {rows:[],tablename:text, tables:[]}
             })
         }
     })
