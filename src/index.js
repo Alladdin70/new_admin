@@ -37,6 +37,18 @@ const myReducer = (state=initialState,action) => {
         tablename: state.tablename,
         tables: state.tables
     };}
+    if(action.type === 'DELETE_TABLE'){return{
+        rows: state.rows,
+        tablename: state.tablename,
+        tables: action.payload.tables
+    };}
+    if(action.type === 'DENY_NEW'){
+        return {
+            rows: state.rows,
+            tablename: state.tablename,
+            tables: state.tables
+        };
+    }
     else{return state;}
 
 };

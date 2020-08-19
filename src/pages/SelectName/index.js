@@ -13,7 +13,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
 import {connect} from "react-redux";
-
+const DENY_NEW ='DENY_NEW';
 const ADD_NEW_TABLENAME = 'ADD_NEW_TABLENAME';
 const useStyle = makeStyles((theme)=>({
     canvas:{
@@ -45,7 +45,10 @@ const useStyle = makeStyles((theme)=>({
 
 
 function SelectName(props){
-    const backHandler = () => {props.history.push('/editor');}
+    const backHandler = () => {
+        props.onDenyNew();
+        props.history.push('/editor');
+    };
     const [text,setText] = useState('');
     const textHandler = (event) => {
         setText(event.target.value);
@@ -125,6 +128,12 @@ export default connect(
             dispatch({
                 type: ADD_NEW_TABLENAME,
                 payload: {rows:[],tablename:text, tables:[]}
+            })
+        },
+        onDenyNew: () => {
+            dispatch({
+                type: DENY_NEW,
+                payload: {}
             })
         }
     })

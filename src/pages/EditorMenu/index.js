@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme)=>({
 
 
 
-const protocolHandler = ()=> {window.location.href='/protomaker';};
+
 const startHandler = ()=> {window.location.href='/start';};
 
 
@@ -43,8 +43,7 @@ function EditorMenu(props){
         });
         props.history.push('/open');
     };
-
-    console.log(props.myStore);
+    const protocolHandler = ()=> props.history.push('/protomaker');
     return(
             
         <Container className={classes.canvas} disableGutters={true}>
@@ -66,7 +65,7 @@ export default connect(
         onAddNew: ()=>{
             dispatch({
                 type: ADD_NEW_TABLE,
-                payload: {rows:[], tablename:''}
+                payload: {rows:[], tablename:'',tables:[]}
             })
         },
         onGetTables: (tables)=>{
