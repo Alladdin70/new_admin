@@ -127,7 +127,7 @@ export default connect(
         onAddNewTablename: (text)=>{
             dispatch({
                 type: ADD_NEW_TABLENAME,
-                payload: {rows:[],tablename:text, tables:[]}
+                payload: {tablename:text}
             })
         },
         onDenyNew: () => {

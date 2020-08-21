@@ -6,6 +6,7 @@ import {Container,AppBar,Box,Tabs,Tab,Typography} from '@material-ui/core';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Title from '../../components/Title';
+import StartTableSelector from "../../components/StartTableSelector";
 
 
 const TabPanel = (props)=>{
@@ -26,7 +27,6 @@ const TabPanel = (props)=>{
         </div>
     );
 };
-
 
 
 
@@ -59,7 +59,7 @@ const mainTabProps = (index) =>{
 
 };
 
-const StartTable = () =>{
+const StartTable = (props) =>{
     const classes = useStyle();
     const [value,setValue] = useState(0);
     const handleChange = (event, newValue) =>{
@@ -74,10 +74,12 @@ const StartTable = () =>{
                 <AppBar className={classes.appbar} position="static">
                     <Tabs value={value} onChange={handleChange}>
                         <Tab label="Новое соревнование" {...mainTabProps(0)}/>
-                        <Tab label="Текушее соревнование" {...mainTabProps(1)} disabled={false}/>
+                        <Tab label="Текушее соревнование" {...mainTabProps(1)} disabled={!props.myStore.current}/>
                     </Tabs>
                 </AppBar>
-                <TabPanel value={value} index={0}>1</TabPanel>
+                <TabPanel value={value} index={0}>
+                   <StartTableSelector/>
+                </TabPanel>
                 <TabPanel value={value} index={1}>2</TabPanel>
             </div>
             <Footer/>

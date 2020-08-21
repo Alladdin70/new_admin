@@ -66,7 +66,7 @@ const SelectTable = (props) => {
                     <RadioGroup aria-label="Таблицы" name="table" value={name} onChange={handleChange}>
                         {
                             props.myStore.tables.map((table,index)=>(
-                            <FormControlLabel value={table} control={<Radio/>} label={table}/>
+                            <FormControlLabel value={table} control={<Radio/>} label={table} key={`radio-${index}`}/>
                             ))
                         }
                     </RadioGroup>

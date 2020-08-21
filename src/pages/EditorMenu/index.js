@@ -11,6 +11,8 @@ import MenuButton from '../../components/MenuButton';
 
 const ADD_NEW_TABLE = 'ADD_NEW_TABLE';
 const GET_TABLES = 'GET_TABLES';
+const GET_TABLES2 = 'GET_TABLES2';
+const GET_TABLES3 = 'GET_TABLES3';
 const useStyle = makeStyles((theme)=>({
     canvas:{
         backgroundColor: '#FFCC66',
@@ -43,7 +45,19 @@ function EditorMenu(props){
         });
         props.history.push('/open');
     };
-    const protocolHandler = ()=> props.history.push('/protomaker');
+    const protocolHandler = ()=> {
+        fetch('/tables').then(res=>res.json()).then((res)=>{
+            props.onGetTables(res);
+        });
+        fetch('/tables2').then(res=>res.json()).then((res)=>{
+            props.onGetTables2(res);
+        });
+        fetch('/tables3').then(res=>res.json()).then((res)=>{
+            props.onGetTables3(res);
+        });
+        props.history.push('/protomaker')
+    };
+
     return(
             
         <Container className={classes.canvas} disableGutters={true}>
@@ -65,12 +79,24 @@ export default connect(
         onAddNew: ()=>{
             dispatch({
                 type: ADD_NEW_TABLE,
-                payload: {rows:[], tablename:'',tables:[]}
+                payload: {}
             })
         },
         onGetTables: (tables)=>{
             dispatch({
                 type: GET_TABLES,
+                payload: {tables: tables}
+            })
+        },
+        onGetTables2: (tables)=>{
+            dispatch({
+                type: GET_TABLES2,
+                payload: {tables: tables}
+            })
+        },
+        onGetTables3: (tables)=>{
+            dispatch({
+                type: GET_TABLES3,
                 payload: {tables: tables}
             })
         }

@@ -1,6 +1,7 @@
 import React from 'react';
+import {connect} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import {Container} from '@material-ui/core';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -18,16 +19,15 @@ const useStyle = makeStyles((theme)=>({
         
     }
 }));
-const editHandler = ()=> {window.location.href='/editor';}
-const tickerHandler = ()=> {window.location.href='/ticker';}
-const correctionHandler = ()=> {window.location.href='/correction';}
-const reportsHandler = ()=> {window.location.href='/reports';}
 
-
-function Home(){
+function Home(props){
+    const editHandler = ()=> {props.history.push('/editor');};
+    const tickerHandler = ()=> {props.history.push('/ticker');};
+    const correctionHandler = ()=> {props.history.push('/correction');};
+    const reportsHandler = ()=> {props.history.push('/reports');};
     const classes = useStyle();
+
     return(
-            
         <Container className={classes.canvas} disableGutters={true}>
             <Header/>
             <Title/>
@@ -37,6 +37,12 @@ function Home(){
             <MenuButton click={reportsHandler} text='Отчеты'/>
             <Footer/>
         </Container>
-            );
+    );
 }
-export default Home;
+
+export default connect(
+    state =>({
+        myStore:state
+    }),
+    dispatch =>({})
+)(Home);
