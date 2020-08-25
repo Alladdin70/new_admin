@@ -4,12 +4,7 @@ const initialState = {
     tables:[],
     tables2:[],
     tables3:[],
-    usedSlots:[],
-    usedSlots1:[],
-    usedSlots2:[],
-    usedSlots3:[],
-    usedSlots4:[],
-    usedSlots5:[],
+    usedSlots:['','','','',''],
     current:false
 };
 
@@ -25,6 +20,7 @@ export const myReducer = (state=initialState,action) => {
     if(action.type === 'CHANGE_RADIO'){return{...state,ablename: action.payload.tablename};}
     if(action.type === 'SELECT_TABLE'){return{...state,rows: action.payload.rows};}
     if(action.type === 'DELETE_TABLE'){return{...state,tables: action.payload.tables};}
+    if(action.type === 'CHANGE_TABLE_NAME'){return{...state,usedSlots: action.payload.usedSlots};}
     if(action.type === 'DENY_NEW'){return {...state};}
     else{return {...state};}
 }
